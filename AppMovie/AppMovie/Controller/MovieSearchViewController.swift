@@ -120,13 +120,18 @@ class MovieSearchViewController: UIViewController {
 // MARK: - Protocol MOVIE SELECTION DELEGATE
 extension MovieSearchViewController: MovieSelectionDelegate{
     func didSelect(movie: Result) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else {
-            fatalError("should be a controller of type MovieDetailViewController")
-        }
         
+        let controller = MovieDetailViewCodeController()
         controller.movieCell = movie
-        navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let controller = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else {
+//            fatalError("should be a controller of type MovieDetailViewController")
+//        }
+//
+//        controller.movieCell = movie
+//        navigationController?.pushViewController(controller, animated: true)
     }
     func removeMovie(atIndexPath: IndexPath) {}
 }
