@@ -84,7 +84,6 @@ class MovieSearchViewController: UIViewController {
             let isFavorite = manegerCoreData.checkFavoriteMovie(movieId: "\(checkedMovies[i].id)")
             if (isFavorite == true){
                 checkedMovies[i].setIsFavorite()}
-            print("ValidaCore\(isFavorite)")
         }
         return checkedMovies
     }

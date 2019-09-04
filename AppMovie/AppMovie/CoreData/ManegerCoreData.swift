@@ -48,7 +48,6 @@ class ManegerCoreData {
     //MARK - Filter the database by id
     func checkFavoriteMovie(movieId: String) -> Bool{
         let request: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()
-        print("MovieIdCheck\(movieId)")
         let predicate = NSPredicate(format: "moveId == %@", movieId)
         
         request.predicate = predicate
