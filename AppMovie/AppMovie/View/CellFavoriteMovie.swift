@@ -35,10 +35,7 @@ class CellFavoriteMovie: UITableViewCell, NibReusable {
         
         guard let pathImage = (movie.movieImage) else {return}
         let Image = "\(URL_IMG)\(pathImage)"
-        if let image = URL(string: Image){
-            imageMovie.kf.indicatorType = .activity
-            imageMovie.kf.setImage(with: image)
-        }
+        imageMovie.download(image: Image)
         
     }
     

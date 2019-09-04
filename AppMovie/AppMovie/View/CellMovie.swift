@@ -22,13 +22,9 @@ class  CellMovie: UICollectionViewCell, NibReusable {
     func setup(movie: Result){
         titleLabel.text = movie.title
         movieImage.kf.indicatorType = .activity
-        //let stringImage = movie?.poster_path
         guard let stringImage = movie.poster_path else {return}
-        let Image = "\(URL_IMG)\(stringImage)" 
-        if let image = URL(string: Image){
-            movieImage.kf.indicatorType = .activity
-            movieImage.kf.setImage(with: image)
-        }
+        let Image = "\(URL_IMG)\(stringImage)"
+        movieImage.download(image: Image)
         
         if (movie.isFavorite == true) {
             favoriteImage.image = UIImage(named:"favorite_full_icon")
