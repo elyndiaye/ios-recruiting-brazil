@@ -58,7 +58,6 @@ class MovieServiceImpl: MovieService {
                 do {
                     let decoder = JSONDecoder()
                     let decodedMovies = try decoder.decode(Movies.self, from: data)
-                    //print(decodedMovies)
                      DispatchQueue.main.async {
                     completionHandler(decodedMovies.results)
                     }

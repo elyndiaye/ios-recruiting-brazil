@@ -45,19 +45,6 @@ class ManegerCoreData {
         return nil
     }
     
-//    func isFavorite(id: String) -> Bool {
-//    let fetchRequest = NSFetchRequest<MovieEntity>(entityName: "MovieEntity")
-//    do {
-//    
-//    let list = try context.fetch(fetchRequest)
-//        if (id == list.m)
-//    return list
-//    } catch {
-//    print("error 321")
-//    }
-//    return nil
-//    }
-    
     //MARK - Filter the database by id
     func checkFavoriteMovie(movieId: String) -> Bool{
         let request: NSFetchRequest<MovieEntity> = MovieEntity.fetchRequest()

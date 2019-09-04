@@ -35,8 +35,6 @@ class  CellMovie: UICollectionViewCell, NibReusable {
     }
     
     public func setFavoriteButtonSelection(_ isSelected:Bool) {
-        // set button image
-        print(isSelected)
         if (isSelected == true) {
             favoriteImage.image = UIImage(named:"favorite_full_icon")
         } else {

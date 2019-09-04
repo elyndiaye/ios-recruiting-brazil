@@ -49,6 +49,5 @@ extension MovieSearchCollectionViewDataSource: UICollectionViewDataSourcePrefetc
         if itemIndex > (movies.count - 30) {
             delegate?.loadMovies()
         }
-        
     }
 }

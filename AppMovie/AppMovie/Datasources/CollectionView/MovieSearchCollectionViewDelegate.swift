@@ -48,8 +48,6 @@ final class MovieSearchCollectionViewDelegate: NSObject,UICollectionViewDelegate
         
         let movieCell = movies[indexPath.row]
         delegate?.didSelect(movie: movieCell)
-        //self.performSegue(withIdentifier: "toDetail", sender: movieCell)
-        
     }
     
 }
