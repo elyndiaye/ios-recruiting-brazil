@@ -158,7 +158,7 @@ extension MovieDetailView: CodeView{
         descriptionTxtView.snp.makeConstraints { make in
             make.top.equalTo(separatorGenersLabel.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(25)
+            make.right.equalToSuperview().inset(15)
             make.height.equalTo(128)
         }
     }
