@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol MovieFavoriteDelegate: class {
+    func pressFavoriteBtn()
+}
