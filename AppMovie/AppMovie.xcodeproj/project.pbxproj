@@ -237,9 +237,9 @@
 				802E4F902304902D003A8256 /* Json */,
 				80782EBE22CE6EA400C64EF9 /* AppMovieTests.swift */,
 				80587F742306E972007E8898 /* MovieSearchViewControllerSpec.swift */,
+				801FB3E2231B6C9A00070F17 /* MovieDetailCodeViewControllerSpec.swift */,
 				80587F782306EB21007E8898 /* MovieServiceMock.swift */,
 				80782EC022CE6EA400C64EF9 /* Info.plist */,
-				801FB3E2231B6C9A00070F17 /* MovieDetailCodeViewControllerSpec.swift */,
 			);
 			path = AppMovieTests;
 			sourceTree = "<group>";
