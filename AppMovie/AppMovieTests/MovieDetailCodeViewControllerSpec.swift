@@ -14,10 +14,10 @@ import Nimble_Snapshots
 
 class MovieDetailCodeViewControllerSpec: QuickSpec {
     override func spec() {
-        describe("the UI") {
+        describe("Screen DetailView") {
             it("has valid snapshot") {
                 let frame = UIScreen.main.bounds
-                let view = MovieDetailViewCodeController(frame: frame)
+                let view = MovieDetailView(frame: frame)
                 expect(view) == recordSnapshot("MovieDetailCodeViewController")
             }
         }
