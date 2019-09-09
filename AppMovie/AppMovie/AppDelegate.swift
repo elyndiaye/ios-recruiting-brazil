@@ -48,39 +48,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     public func updateTabBarController() {
+        let window = UIWindow(frame: UIScreen.main.bounds)
         
         // Assign tab bar item with titles:
         let tabBarController:UITabBarController = self.window?.rootViewController as! UITabBarController
         let tabBar = tabBarController.tabBar
         //
         tabBar.backgroundImage = UIImage.createFlatImage(size: tabBar.bounds.size, corners: .allCorners, cornerRadius: CGSize.zero, color: UIColor.mainColor())
-//      tabBar.backgroundImage = App.Utils.Graphic.createFlatImage(size: tabBar.bounds.size, corners: .allCorners, cornerRadius: CGSize.zero, color: App.Style.color1)
-     
+        
         tabBar.shadowImage = nil
         tabBar.backgroundColor = nil
         tabBar.isTranslucent = false
         tabBar.tintColor = UIColor.mainDarkBlue()
         tabBar.unselectedItemTintColor = UIColor.gray
         //
-        let tabBarItem1 = tabBar.items?[0]
-        let tabBarItem2 = tabBar.items?[1]
-        //
-        tabBarItem1?.title = "Filmes"
-        tabBarItem2?.title = "Favoritos"
-        //
-        tabBarItem1?.selectedImage = UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate)
-        tabBarItem1?.image = UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate)
         
-        tabBarItem2?.selectedImage = UIImage.init(named: "favorite_empty_icon")?.withRenderingMode(.alwaysTemplate)
-        tabBarItem2?.image = UIImage.init(named: "favorite_empty_icon")?.withRenderingMode(.alwaysTemplate)
+        /*When use ViewCode
+         let movieSearchVC = MovieSearchViewController()
+         movieSearchVC.title = "Filmes"
+         movieSearchVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate), tag: 0)*/
         
-        let navBar = tabBarController.viewControllers?[0] as! UINavigationController
-        let controller = navBar.topViewController as! MovieSearchViewController
-       
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let movieSearchViewController = storyboard.instantiateViewController(withIdentifier: "MovieSearchViewController")
+        movieSearchViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate), tag: 0)
+        
+        let favoriteMoveisVC = FavoriteMovieViewCodeController()
+        favoriteMoveisVC.title = "Favoritos"
+        favoriteMoveisVC.tabBarItem = UITabBarItem(title: "Favoritos", image: UIImage.init(named: "favorite_empty_icon")?.withRenderingMode(.alwaysTemplate), tag: 1)
+        
+        // Adding navigation controller
+        let controllers = [movieSearchViewController, favoriteMoveisVC]
+        tabBarController.viewControllers = controllers.map({
+            UINavigationController(rootViewController: $0)
+        })
+        
+        // set root viewController
+        window.rootViewController = tabBarController
+        self.window = window
+        
+        window.makeKeyAndVisible()
+        
+        //        let navBar = tabBarController.viewControllers?[0] as! UINavigationController
+        //        let controller = navBar.topViewController as! MovieSearchViewController
+        
         /* Para Injecao de dependencia
-        controller.setupView(service: MovieServiceImpl()) */
-        
-        
+         controller.setupView(service: MovieServiceImpl()) */
         
     }
 
