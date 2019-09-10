@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import Reusable
 
-final class : UITableViewCell, NibReusable {
+final class FavoriteMoviesTableCell: UITableViewCell, NibReusable {
     
     lazy var imageMovie:UIImageView = {
         let view = UIImageView(frame: .zero)
@@ -20,9 +20,11 @@ final class : UITableViewCell, NibReusable {
     
     lazy var titulo: UILabel = {
         let view = UILabel(frame: .zero)
-        view.font = UIFont.systemFont(ofSize: 17)
+        view.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
+        view.adjustsFontSizeToFitWidth = true
         view.numberOfLines = 0
         view.adjustsFontSizeToFitWidth = true
+        view.minimumScaleFactor = 0.8
         view.textColor = UIColor.mainDarkBlue()
         view.text = "Title"
         return view
@@ -30,8 +32,10 @@ final class : UITableViewCell, NibReusable {
     
     lazy var descriptionMovie: UILabel = {
         let view = UILabel(frame: .zero)
-        view.font = UIFont.systemFont(ofSize: 17)
+        view.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
+        view.numberOfLines = 8
         view.adjustsFontSizeToFitWidth = true
+        view.minimumScaleFactor = 0.4
         view.textColor = UIColor.mainDarkBlue()
         view.text = "Description"
         return view
@@ -39,7 +43,8 @@ final class : UITableViewCell, NibReusable {
     
     lazy var year: UILabel = {
         let view = UILabel(frame: .zero)
-        view.font = UIFont.systemFont(ofSize: 17)
+        view.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
+        view.adjustsFontSizeToFitWidth = true
         view.textColor = UIColor.mainDarkBlue()
         view.text = "Year"
         return view
@@ -52,13 +57,13 @@ final class : UITableViewCell, NibReusable {
     
     //MARK: - ConfigureCell
     func configureCell(movie: MovieEntity) {
-        //        self.titleLbl.text = movie.movieTitle
-        //        self.dateLbl.text = movie.movieDate
-        //        self.descriptionLbl.text = movie.movieDescription
-        //
-        //        guard let pathImage = (movie.movieImage) else {return}
-        //        let Image = "\(URL_IMG)\(pathImage)"
-        //        imageMovie.download(image: Image)        
+        self.titulo.text = movie.movieTitle
+        self.year.text = movie.movieDate
+        self.descriptionMovie.text = movie.movieDescription
+        
+        guard let pathImage = (movie.movieImage) else {return}
+        let Image = "\(URL_IMG)\(pathImage)"
+        imageMovie.download(image: Image)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,13 +72,13 @@ final class : UITableViewCell, NibReusable {
     
 }
 
-extension : CodeView{
+extension FavoriteMoviesTableCell: CodeView{
     func buildViewHierarchy() {
         //Adicionar View
         contentView.addSubview(imageMovie)
         contentView.addSubview(titulo)
-        contentView.addSubview(descriptionMovie)
         contentView.addSubview(year)
+        contentView.addSubview(descriptionMovie)
     }
     
     func setupConstraints() {
@@ -84,6 +89,26 @@ extension : CodeView{
             make.left.equalToSuperview().offset(10)
             make.width.equalTo(84)
             make.height.equalTo(114)
+        }
+        
+        titulo.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8).priority(.high)
+            make.left.equalTo(imageMovie.snp.right).offset(16)
+            
+        }
+        
+        year.snp.makeConstraints { make in
+            make.top.equalTo(titulo.snp.top)
+            make.right.equalToSuperview().inset(8)
+        }
+        
+        descriptionMovie.snp.makeConstraints { make in
+            make.height.equalTo(119)
+            make.right.equalToSuperview()
+            make.left.equalTo(imageMovie.snp.right).offset(16)
+            make.bottom.equalToSuperview().inset(10)
+            //            make.top.equalTo(titulo.snp.bottom).inset(3)
+            
         }
     }
     

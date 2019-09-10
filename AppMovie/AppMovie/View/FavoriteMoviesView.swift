@@ -10,6 +10,18 @@ import UIKit
 
 final class FavoriteMoviesView: UIView{
     
+    lazy var search: UISearchBar = {
+        let view = UISearchBar()
+        return view
+    }()
+    
+    
+    lazy var table: UITableView = {
+        let view = UITableView()
+        view.separatorStyle = .singleLine
+        return view
+    }()
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         setupView()
@@ -25,17 +37,25 @@ final class FavoriteMoviesView: UIView{
 extension FavoriteMoviesView: CodeView{
     func buildViewHierarchy() {
         //Adicionar View
+        addSubview(search)
+        addSubview(table)
     }
     
     func setupConstraints() {
         //Configurar Constraints
         //Snapkit
+        search.snp.makeConstraints { make in
+            make.top.right.left.equalToSuperview()
+        }
+        table.snp.makeConstraints { make in
+            make.top.equalTo(search.snp.bottom)
+            make.right.left.bottom.equalToSuperview()
+        }
     }
     
     func setupAdditionalConfiguration() {
         //Setup adicional
-        backgroundColor = .white
-        separatorStyle = .none
+        
     }
     
 }
