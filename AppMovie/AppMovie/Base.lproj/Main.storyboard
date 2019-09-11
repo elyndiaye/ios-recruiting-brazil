@@ -122,10 +122,10 @@
             </objects>
             <point key="canvasLocation" x="2221.5999999999999" y="-118.29085457271366"/>
         </scene>
-        <!--Movie Detail View Controller-->
+        <!--View Controller-->
         <scene sceneID="S6S-cc-eQX">
             <objects>
-                <viewController storyboardIdentifier="MovieDetailViewController" id="b1D-H0-4wM" customClass="MovieDetailViewController" customModule="AppMovie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" id="b1D-H0-4wM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qKY-cg-VoR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="3033" y="-127"/>
         </scene>
-        <!--Favorite Movie View Controller-->
+        <!--Favorite Movie View Code Controller-->
         <scene sceneID="nyQ-dN-QMe">
             <objects>
-                <viewController id="gHi-2U-Rcr" customClass="FavoriteMovieViewController" customModule="AppMovie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gHi-2U-Rcr" customClass="FavoriteMovieViewCodeController" customModule="AppMovie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mdx-tK-ETY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
