@@ -63,21 +63,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBar.unselectedItemTintColor = UIColor.gray
         //
         
-        /*When use ViewCode
-         let movieSearchVC = MovieSearchViewController()
+        //When use ViewCode
+         let movieSearchVC = MovieSearchViewCodeController()
          movieSearchVC.title = "Filmes"
-         movieSearchVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate), tag: 0)*/
+         movieSearchVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate), tag: 0)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let movieSearchViewController = storyboard.instantiateViewController(withIdentifier: "MovieSearchViewController")
-        movieSearchViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate), tag: 0)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let movieSearchViewController = storyboard.instantiateViewController(withIdentifier: "MovieSearchViewController")
+//        movieSearchViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage.init(named: "list_icon")?.withRenderingMode(.alwaysTemplate), tag: 0)
         
         let favoriteMoveisVC = FavoriteMovieViewCodeController()
         favoriteMoveisVC.title = "Favoritos"
         favoriteMoveisVC.tabBarItem = UITabBarItem(title: "Favoritos", image: UIImage.init(named: "favorite_empty_icon")?.withRenderingMode(.alwaysTemplate), tag: 1)
         
         // Adding navigation controller
-        let controllers = [movieSearchViewController, favoriteMoveisVC]
+        let controllers = [movieSearchVC, favoriteMoveisVC]
         tabBarController.viewControllers = controllers.map({
             UINavigationController(rootViewController: $0)
         })

@@ -19,7 +19,7 @@ final class MovieSearchView: UIView{
     
     lazy var collection: UICollectionView = {
          let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         return view
     }()
     
