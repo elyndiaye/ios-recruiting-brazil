@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import Reusable
 
-final class FavoriteMoviesTableCell: UITableViewCell, NibReusable {
+final class FavoriteMoviesTableCell: UITableViewCell, Reusable {
     
     lazy var imageMovie:UIImageView = {
         let view = UIImageView(frame: .zero)
@@ -20,11 +20,9 @@ final class FavoriteMoviesTableCell: UITableViewCell, NibReusable {
     
     lazy var titulo: UILabel = {
         let view = UILabel(frame: .zero)
-        view.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
+        view.font = UIFont(name: "HelveticaNeue", size: 12.0)
         view.adjustsFontSizeToFitWidth = true
-        view.numberOfLines = 0
-        view.adjustsFontSizeToFitWidth = true
-        view.minimumScaleFactor = 0.8
+        view.numberOfLines = 1
         view.textColor = UIColor.mainDarkBlue()
         view.text = "Title"
         return view
@@ -32,10 +30,10 @@ final class FavoriteMoviesTableCell: UITableViewCell, NibReusable {
     
     lazy var descriptionMovie: UILabel = {
         let view = UILabel(frame: .zero)
-        view.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
-        view.numberOfLines = 8
+        view.font = UIFont(name: "HelveticaNeue", size: 12.0)
+        view.numberOfLines = 15
         view.adjustsFontSizeToFitWidth = true
-        view.minimumScaleFactor = 0.4
+        view.minimumScaleFactor = 0.6
         view.textColor = UIColor.mainDarkBlue()
         view.text = "Description"
         return view
@@ -43,7 +41,7 @@ final class FavoriteMoviesTableCell: UITableViewCell, NibReusable {
     
     lazy var year: UILabel = {
         let view = UILabel(frame: .zero)
-        view.font = UIFont(name: "HelveticaNeue-Thin", size: 12.0)
+        view.font = UIFont(name: "HelveticaNeue", size: 12.0)
         view.adjustsFontSizeToFitWidth = true
         view.textColor = UIColor.mainDarkBlue()
         view.text = "Year"
@@ -86,14 +84,16 @@ extension FavoriteMoviesTableCell: CodeView{
         //Snapkit
         imageMovie.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
+            make.bottom.equalToSuperview().inset(31)
             make.left.equalToSuperview().offset(10)
-            make.width.equalTo(84)
             make.height.equalTo(114)
+            make.width.equalTo(84)
         }
         
         titulo.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8).priority(.high)
             make.left.equalTo(imageMovie.snp.right).offset(16)
+            make.height.equalTo(21)
             
         }
         
@@ -103,11 +103,10 @@ extension FavoriteMoviesTableCell: CodeView{
         }
         
         descriptionMovie.snp.makeConstraints { make in
-            make.height.equalTo(119)
-            make.right.equalToSuperview()
-            make.left.equalTo(imageMovie.snp.right).offset(16)
+            make.top.equalTo(titulo.snp.bottom).offset(3)
+            make.right.equalToSuperview().inset(3)
+            make.left.equalTo(titulo.snp.left)
             make.bottom.equalToSuperview().inset(10)
-            //            make.top.equalTo(titulo.snp.bottom).inset(3)
             
         }
     }

@@ -19,7 +19,7 @@ final class FavoriteMovieTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private func setupTableView(_ tableView: UITableView) {
-        tableView.register(cellType: CellFavoriteMovie.self)
+        tableView.register(cellType: FavoriteMoviesTableCell.self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,7 +28,7 @@ final class FavoriteMovieTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath,
-                                                 cellType: CellFavoriteMovie.self)
+                                                 cellType: FavoriteMoviesTableCell.self)
         let movie = movies[indexPath.row]
         cell.configureCell(movie: movie)
         return cell

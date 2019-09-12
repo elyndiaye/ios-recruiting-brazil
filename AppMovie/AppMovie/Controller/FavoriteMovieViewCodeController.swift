@@ -131,7 +131,6 @@ extension FavoriteMovieViewCodeController: MovieSelectionDelegate{
 extension FavoriteMovieViewCodeController: UISearchBarDelegate{
     func setupSearchBar() {
         self.screen.search.delegate = self
-        print("SEARCH ")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
