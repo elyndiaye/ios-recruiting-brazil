@@ -29,6 +29,8 @@ class MovieFavoriteViewCodeControllerSpec: QuickSpec {
                 let view =  cell
                 
                 expect(view) == recordSnapshot("FavoriteCell")
+                
+                expect { view.backgroundColor = .red }.to(throwAssertion())
             }
         }
     }
