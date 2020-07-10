@@ -31,10 +31,11 @@ extension UIImage{
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         path.fill()
-        let image:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        //
-        return image
+        if let image:UIImage = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            //
+            return image }
+        else { return UIImage() }
     }
 }
 
