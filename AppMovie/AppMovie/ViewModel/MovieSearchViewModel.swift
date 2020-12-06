@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MovieSearchViewModel {
+public class MovieSearchViewModel {
     typealias completionBlock = ([Result]) -> ()
     var movie = [Result]()
     var filteredMovie = [Result]()
@@ -26,14 +26,14 @@ class MovieSearchViewModel {
     }
     
     func apiWithQuery(query: String, completionBlock : @escaping completionBlock){
-        service.getMoviesByQuery(query: query){ [weak self] movies in
+        service.getMoviesByQuery(query: query){ [weak self] moviesFiltred in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.filteredMovie += movies
-                if(movies.isEmpty){
-                    completionBlock(self.movie)
-                    return
-                }
+                self.filteredMovie += moviesFiltred
+//                if(movies.isEmpty){
+//                    completionBlock(self.filteredMovie)
+//                    return
+//                }
                 completionBlock(self.filteredMovie)
             }
         }

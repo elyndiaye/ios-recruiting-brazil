@@ -23,6 +23,8 @@ class MovieSearchViewCodeController: UIViewController {
     var collectionViewDataSource: MovieSearchCollectionViewDataSource?
     var collectionViewDelegate: MovieSearchCollectionViewDelegate?
     
+    var movieSearchViewModel = MovieSearchViewModel()
+    
     var service: MovieService = MovieServiceImpl()
     
     let screen = MovieSearchView()
@@ -35,7 +37,7 @@ class MovieSearchViewCodeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        api()
+        apiHandler()
         configureViewComponents()
         setupSearchBar()
     }
@@ -93,32 +95,34 @@ class MovieSearchViewCodeController: UIViewController {
     }
     
     // MARK: - API Services
-    func api(){
-        service.getMovies(page: pageCount){ [weak self] movies in
-            guard let self = self else { return }
-            self.movie.append(contentsOf: movies)
+    func apiHandler(){
+        movieSearchViewModel.apiFromViewModel(page: pageCount){
+        (movies) in
             DispatchQueue.main.async {
-                self.setupCollectionView(with: self.movie)
+                self.movie.append(contentsOf: movies)
+                self.setupCollectionView(with: movies)
             }
         }
     }
     
-    func apiWithQuery(query: String){
-        service.getMoviesByQuery(query: query){ [weak self] movies in
-            guard let self = self else { return }
+    
+    func apiWithQueryHandler(query: String){
+        movieSearchViewModel.apiWithQuery(query: query){
+            (movies) in
             self.isLoading = false
-            DispatchQueue.main.async {
-                self.filteredMovie += movies
                 if(movies.isEmpty){
                     self.EmptyTextField(text: "Not Found", message: "Filme não encontrado na lista de filmes Populares")
-                    self.setupCollectionView(with: self.movie)
+                    DispatchQueue.main.async {
+                        self.setupCollectionView(with: self.movie)
+                    }
                     return
                 }
-                self.setupCollectionView(with: self.filteredMovie)
-            }
+                self.setupCollectionView(with: movies)
+           
         }
     }
 }
+
 // MARK: - Protocol MOVIE SELECTION DELEGATE
 extension MovieSearchViewCodeController: MovieSelectionDelegate{
     func didSelect(movie: Result) {
@@ -145,7 +149,7 @@ extension MovieSearchViewCodeController: MoviePagingDelegate{
         pageCount += 1
         print(pageCount)
         if (inSearchMode == false){
-            api()
+            apiHandler()
         }
     }
 }
@@ -161,7 +165,7 @@ extension MovieSearchViewCodeController: UISearchBarDelegate{
         let query = searchBar.text ?? ""
         if !query.isEmpty {
             print(query)
-            apiWithQuery(query: query)
+            apiWithQueryHandler(query: query)
         }
     }
     
