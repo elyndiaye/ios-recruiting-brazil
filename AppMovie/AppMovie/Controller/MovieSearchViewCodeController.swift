@@ -185,7 +185,7 @@ extension MovieSearchViewCodeController: UISearchBarDelegate{
             screen.search.showsCancelButton = true
             inSearchMode = true
             print(searchText)
-            filteredMovie = movie.filter({ $0.title?.lowercased().range(of: searchText.lowercased()) != nil })
+            filteredMovie = movieSearchViewModel.movie.filter({ $0.title?.lowercased().range(of: searchText.lowercased()) != nil })
             //filter({$0.title.lowercased().contains(searchText.lowercased())})
             print(filteredMovie)
             self.setupCollectionView(with: self.filteredMovie)
